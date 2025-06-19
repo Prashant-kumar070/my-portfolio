@@ -4,46 +4,50 @@ import { Calendar, MapPin, Download } from 'lucide-react';
 const Resume: React.FC = () => {
   const education = [
     {
-      degree: 'Bachelor of Computer Science',
-      school: 'University of Technology',
-      location: 'New York, USA',
-      period: '2018 - 2022',
-      description: 'Relevant coursework in software engineering, web development, and database management.'
+      degree: 'Bachelor of Technology (Computer Science)',
+      school: 'Sanskar Educational Group',
+      location: 'Ghaziabad, Uttar Pradesh, India',
+      period: '2019 - 2023',
+      description: 'Completed B.Tech in Computer Science with hands-on experience in academic projects and coursework.',
     },
     {
-      degree: 'Full Stack Web Development',
-      school: 'Coding Bootcamp',
-      location: 'Online',
-      period: '2022',
-      description: 'Intensive program covering modern web technologies including React, Node.js, and MongoDB.'
+      degree: 'Intermediate',
+      school: 'Vip Inter College',
+      location: 'Pilkhuwa, Uttar Pradesh, India',
+      period: '2017 - 2019',
+      description: 'Completed Intermediate with a strong foundation in science and mathematics. Focused on Mathematics, Physics, and Chemistry, which built the analytical and logical thinking required for engineering.',
     }
   ];
 
   const experience = [
     {
-      position: 'Senior Full Stack Developer',
-      company: 'Tech Solutions Inc.',
-      location: 'New York, USA',
-      period: '2023 - Present',
-      description: 'Lead development of complex web applications using React, Node.js, and cloud technologies. Mentor junior developers and collaborate with cross-functional teams.'
+      position: 'PHP / Laravel Developer',
+      company: 'Webnyxa Technologies',
+      location: 'Noida',
+      period: 'Sep 2023 – Present',
+      description: 'Built and deployed interactive web applications using Laravel. Integrated third-party APIs and optimized performance. Collaborated with frontend teams for smooth UI/UX integration.'
     },
     {
-      position: 'Frontend Developer',
-      company: 'Digital Agency',
-      location: 'New York, USA',
-      period: '2022 - 2023',
-      description: 'Developed responsive web applications and collaborated with designers to create engaging user experiences. Worked with React, TypeScript, and modern CSS frameworks.'
+      position: 'Associate Software Engineer ',
+      company: 'Knocial India Limited',
+      location: 'Gurgaon',
+      period: 'Oct 2022 – Aug 2023',
+      description: 'Completed in-depth training in Laravel and backend development and joined as full-time later. Worked on internal tools to improve team productivity. Contributed to multiple company projects under guidance.'
     }
   ];
 
-  const skills = [
-    { name: 'JavaScript', level: 95 },
-    { name: 'React', level: 90 },
-    { name: 'TypeScript', level: 85 },
-    { name: 'Node.js', level: 80 },
-    { name: 'Python', level: 75 },
-    { name: 'SQL', level: 85 }
-  ];
+const skills = [
+  { name: 'PHP', level: 95 },
+  { name: 'Laravel', level: 95 },
+  { name: 'JavaScript', level: 85 },
+  { name: 'MySQL', level: 85 },
+  { name: 'HTML/CSS', level: 95 },
+  { name: 'Supabase', level: 75 },
+  { name: 'Docker', level: 85 },
+  { name: 'Git ', level: 95 },
+  { name: 'BitBucket / GitHub / GitLab', level: 90 },
+  { name: 'Apache / Nginx', level: 80 }
+];
 
   return (
     <div className="space-y-8">

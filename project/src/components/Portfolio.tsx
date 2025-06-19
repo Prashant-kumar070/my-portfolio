@@ -39,20 +39,20 @@ const Portfolio: React.FC<PortfolioProps> = ({ projects, onAddProject, onRemoveP
     <div className="space-y-8">
       <div className="flex items-center justify-between">
         <h2 className="text-4xl font-bold text-white">Portfolio</h2>
-        <button
+        {/* <button
           onClick={() => setShowAddForm(true)}
           className="bg-orange-500 hover:bg-orange-600 text-white px-6 py-3 rounded-lg flex items-center gap-2 transition-all duration-300 hover:shadow-lg hover:shadow-orange-500/30"
         >
           <Plus className="w-5 h-5" />
           Add Project
-        </button>
+        </button> */}
       </div>
 
       {showAddForm && (
         <div className="fixed inset-0 bg-black/70 backdrop-blur-sm flex items-center justify-center z-50 p-4">
           <div className="bg-gray-800/90 backdrop-blur-sm rounded-2xl p-8 w-full max-w-md border border-gray-600/50 shadow-2xl">
             <div className="flex items-center justify-between mb-6">
-              <h3 className="text-xl font-bold text-white">Add New Project</h3>
+              {/* <h3 className="text-xl font-bold text-white">Add New Project</h3> */}
               <button
                 onClick={() => setShowAddForm(false)}
                 className="text-gray-400 hover:text-white transition-colors"
@@ -83,18 +83,24 @@ const Portfolio: React.FC<PortfolioProps> = ({ projects, onAddProject, onRemoveP
                 >
                   <Eye className="w-5 h-5" />
                 </button>
-                <button
-                  onClick={() => onRemoveProject(project.id)}
-                  className="bg-red-500 hover:bg-red-600 text-white p-2 rounded-lg transition-colors shadow-lg"
-                >
-                  <X className="w-5 h-5" />
-                </button>
+               
               </div>
             </div>
             <div className="p-6">
               <span className="text-sm text-orange-500 font-medium">{project.category}</span>
               <h3 className="text-xl font-semibold text-white mb-3">{project.name}</h3>
+              <h3 className="text-l font-semibold text-white mb-3">{project.appname}</h3>
               <p className="text-gray-400">{project.description}</p>
+              {project.link && (
+                    <a
+                      href={project.link}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="inline-block bg-orange-500 hover:bg-orange-600 text-white text-sm px-4 py-2 rounded-lg transition-colors shadow hover:shadow-md"
+                    >
+                      Visit
+                    </a>
+                  )}
             </div>
           </div>
         ))}

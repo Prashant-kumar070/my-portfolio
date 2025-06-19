@@ -5,22 +5,22 @@ const About: React.FC = () => {
   const services = [
     {
       icon: <Code className="w-8 h-8" />,
-      title: '🖥️ Web Development',
+      title: 'Web Development',
       description: 'High-quality development of sites at the professional level.'
     },
     {
       icon: <Globe className="w-8 h-8" />,
-      title: '🎨 Web Design',
+      title: 'Web Design',
       description: 'Working closely with frontend teams to integrate modern, responsive UIs using HTML, CSS, and JavaScript.'
     },
     {
       icon: <Smartphone className="w-8 h-8" />,
-      title: '📱 Mobile Apps (Backend)',
+      title: 'Mobile Apps (Backend)',
       description: 'Developing backend architectures for Android/iOS apps including features like subscriptions, authentication, and real-time data with tools like RevenueCat and Supabase.'
     },
     {
       icon: <Camera className="w-8 h-8" />,
-      title: '💬 AI-Powered Tools',
+      title: 'AI-Powered Tools',
       description: 'Building tools that use AI models to deliver intelligent, prompt-based user experiences—such as chatbots, image generators, and apps (based on AI).'
 
     },

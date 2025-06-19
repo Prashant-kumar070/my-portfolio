@@ -27,7 +27,7 @@ const Sidebar: React.FC<SidebarProps> = ({ activeSection, onSectionChange }) => 
         </div>
         <h1 className="text-xl font-bold text-white mb-2">Prashant Kumar</h1>
         <p className="text-gray-400 text-sm">Backend Developer</p>
-        <p className="text-gray-400 text-sm">PHP Laravel Wordpress</p>
+        <p className="text-gray-400 text-sm">PHP | Laravel | Wordpress</p>
       </div>
 
       <div className="mb-8 space-y-3">
