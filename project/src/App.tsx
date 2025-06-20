@@ -8,6 +8,10 @@ import { Project } from './types/project';
 
 function App() {
   const [activeSection, setActiveSection] = useState('about');
+  const [isSidebarOpen, setIsSidebarOpen] = useState(false);
+  const toggleSidebar = () => {
+    setIsSidebarOpen(!isSidebarOpen);
+  };
   const [projects, setProjects] = useState<Project[]>([
     {
       id: '1',
@@ -120,14 +124,53 @@ function App() {
 
   return (
     <div className="min-h-screen bg-gray-900">
-      <Sidebar activeSection={activeSection} onSectionChange={setActiveSection} />
-      <main className="ml-72 p-6 flex justify-center">
-        <div className="w-full max-w-5xl bg-gray-800/50 backdrop-blur-sm rounded-3xl p-8 shadow-2xl border border-gray-700/50 relative overflow-hidden">
-          {/* Glowing effect */}
+      {/* Mobile header with hamburger */}
+      <div className="md:hidden flex items-center justify-between px-4 py-3 bg-gray-900 border-b border-gray-700">
+        <h1 className="text-white text-lg font-bold">Prashant Kumar</h1>
+        <button onClick={toggleSidebar} className="text-white focus:outline-none">
+          {/* simple hamburger icon */}
+          <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M4 6h16M4 12h16M4 18h16" />
+          </svg>
+        </button>
+      </div>
+
+     {/* Sidebar for desktop */}
+<div className="hidden md:block fixed top-0 left-0 z-20">
+  <Sidebar activeSection={activeSection} onSectionChange={setActiveSection} />
+</div>
+
+{/* Mobile Sidebar */}
+{isSidebarOpen && (
+  <div className="md:hidden fixed inset-0 z-40 flex">
+    {/* Overlay */}
+    <div
+      className="absolute inset-0 bg-black bg-opacity-60"
+      onClick={toggleSidebar}
+    ></div>
+
+    {/* Sidebar Drawer */}
+    <div
+      className="relative w-64 bg-gray-900 h-full z-50 p-6"
+      onClick={(e) => e.stopPropagation()}
+    >
+      <Sidebar
+        activeSection={activeSection}
+        onSectionChange={(section) => {
+          setActiveSection(section);
+          toggleSidebar();
+        }}
+      />
+    </div>
+  </div>
+)}
+
+
+      {/* Main content */}
+      <main className="md:ml-72 p-4 md:p-6 flex justify-center">
+        <div className="w-full max-w-5xl bg-gray-800/50 backdrop-blur-sm rounded-3xl p-6 md:p-8 shadow-2xl border border-gray-700/50 relative overflow-hidden">
           <div className="absolute inset-0 bg-gradient-to-r from-orange-500/10 via-transparent to-orange-500/10 rounded-3xl"></div>
           <div className="absolute -inset-1 bg-gradient-to-r from-orange-500/20 via-transparent to-orange-500/20 rounded-3xl blur-sm"></div>
-          
-          {/* Content */}
           <div className="relative z-10">
             {renderContent()}
           </div>
@@ -136,5 +179,6 @@ function App() {
     </div>
   );
 }
+
 
 export default App;

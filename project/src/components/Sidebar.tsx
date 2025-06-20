@@ -15,7 +15,8 @@ const Sidebar: React.FC<SidebarProps> = ({ activeSection, onSectionChange }) => 
   ];
 
   return (
-    <div className="w-72 bg-gray-900/95 backdrop-blur-sm min-h-screen p-6 fixed left-0 top-0 z-20 border-r border-gray-700/50">
+  
+    <div className="  w-72 bg-gray-900/95 backdrop-blur-sm min-h-screen p-6 fixed left-0 top-0 z-20 border-r border-gray-700/50">
     <div className="mb-8">
       <div className="w-30 h-30 rounded-full overflow-hidden border-4 border-orange-500 shadow-lg shadow-orange-500/30 mx-auto mb-4">
         <img
