@@ -37,7 +37,7 @@ const About: React.FC = () => {
         <h2 className="text-4xl font-bold text-white mb-8">About Me</h2>
         <div className="bg-gray-700/30 backdrop-blur-sm p-8 rounded-2xl border border-gray-600/30">
           <p className="text-gray-300 leading-relaxed mb-6">
-          I'm a Backend Developer with having 3 years of hands-on experience in PHP and Laravel.
+          I'm a Backend Developer with having 3 years of hands-on experience in PHP, Laravel and Wordpress.
            I specialize in building robust, scalable, and efficient web applications, managing servers, and integrating third-party APIs.
           </p>
           <p className="text-gray-300 leading-relaxed">
