@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Send, MapPin, Mail, Phone } from 'lucide-react';
+import { Send, MapPin, Mail, Phone, Loader2 } from 'lucide-react';
 
 const Contact: React.FC = () => {
   const [formData, setFormData] = useState({
@@ -9,9 +9,15 @@ const Contact: React.FC = () => {
   });
 
   const [statusMessage, setStatusMessage] = useState<{ type: 'success' | 'error'; text: string } | null>(null);
+  const [isSubmitting, setIsSubmitting] = useState(false); // Add loading state
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
+    
+    // Prevent multiple submissions
+    if (isSubmitting) return;
+    
+    setIsSubmitting(true); // Disable button
 
     const payload = {
       type: 'stream',
@@ -45,6 +51,8 @@ const Contact: React.FC = () => {
     } catch (error) {
       console.error('Zulip error:', error);
       setStatusMessage({ type: 'error', text: 'Something went wrong. Please try again.' });
+    } finally {
+      setIsSubmitting(false); // Re-enable button after completion
     }
 
     setTimeout(() => {
@@ -124,7 +132,8 @@ const Contact: React.FC = () => {
                   name="name"
                   value={formData.name}
                   onChange={handleInputChange}
-                  className="w-full bg-gray-600/50 backdrop-blur-sm text-white px-4 py-3 rounded-lg border border-gray-500/50 focus:outline-none focus:ring-2 focus:ring-orange-500 focus:border-transparent transition-all"
+                  disabled={isSubmitting} // Disable inputs while submitting
+                  className="w-full bg-gray-600/50 backdrop-blur-sm text-white px-4 py-3 rounded-lg border border-gray-500/50 focus:outline-none focus:ring-2 focus:ring-orange-500 focus:border-transparent transition-all disabled:opacity-50 disabled:cursor-not-allowed"
                   required
                 />
               </div>
@@ -137,7 +146,8 @@ const Contact: React.FC = () => {
                   name="email"
                   value={formData.email}
                   onChange={handleInputChange}
-                  className="w-full bg-gray-600/50 backdrop-blur-sm text-white px-4 py-3 rounded-lg border border-gray-500/50 focus:outline-none focus:ring-2 focus:ring-orange-500 focus:border-transparent transition-all"
+                  disabled={isSubmitting} // Disable inputs while submitting
+                  className="w-full bg-gray-600/50 backdrop-blur-sm text-white px-4 py-3 rounded-lg border border-gray-500/50 focus:outline-none focus:ring-2 focus:ring-orange-500 focus:border-transparent transition-all disabled:opacity-50 disabled:cursor-not-allowed"
                   required
                 />
               </div>
@@ -150,17 +160,32 @@ const Contact: React.FC = () => {
                   value={formData.message}
                   onChange={handleInputChange}
                   rows={5}
-                  className="w-full bg-gray-600/50 backdrop-blur-sm text-white px-4 py-3 rounded-lg border border-gray-500/50 focus:outline-none focus:ring-2 focus:ring-orange-500 focus:border-transparent transition-all"
+                  disabled={isSubmitting} // Disable inputs while submitting
+                  className="w-full bg-gray-600/50 backdrop-blur-sm text-white px-4 py-3 rounded-lg border border-gray-500/50 focus:outline-none focus:ring-2 focus:ring-orange-500 focus:border-transparent transition-all disabled:opacity-50 disabled:cursor-not-allowed"
                   required
                 />
               </div>
 
               <button
                 type="submit"
-                className="w-full bg-gradient-to-r from-orange-500 to-red-500 hover:from-orange-600 hover:to-red-600 text-white py-3 rounded-lg flex items-center justify-center gap-2 transition-all duration-300 shadow-lg shadow-orange-500/30 hover:shadow-orange-500/40"
+                disabled={isSubmitting} // Disable button while submitting
+                className={`w-full py-3 rounded-lg flex items-center justify-center gap-2 transition-all duration-300 shadow-lg ${
+                  isSubmitting
+                    ? 'bg-gray-500 cursor-not-allowed shadow-gray-500/30'
+                    : 'bg-gradient-to-r from-orange-500 to-red-500 hover:from-orange-600 hover:to-red-600 shadow-orange-500/30 hover:shadow-orange-500/40'
+                } text-white`}
               >
-                <Send className="w-5 h-5" />
-                Send Message
+                {isSubmitting ? (
+                  <>
+                    <Loader2 className="w-5 h-5 animate-spin" />
+                    Sending...
+                  </>
+                ) : (
+                  <>
+                    <Send className="w-5 h-5" />
+                    Send Message
+                  </>
+                )}
               </button>
             </form>
           </div>
