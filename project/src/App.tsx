@@ -122,6 +122,18 @@ function App() {
     }
   };
 
+  React.useEffect(() => {
+    if (isSidebarOpen) {
+      document.body.style.overflow = 'hidden';
+    } else {
+      document.body.style.overflow = '';
+    }
+    return () => {
+      document.body.style.overflow = '';
+    };
+  }, [isSidebarOpen]);
+  
+
   return (
     <div className="min-h-screen bg-gray-900">
       {/* Mobile header with hamburger */}
@@ -136,7 +148,7 @@ function App() {
       </div>
 
      {/* Sidebar for desktop */}
-<div className="hidden md:block fixed top-0 left-0 z-20">
+     <div className="hidden md:block fixed top-0 left-0 z-20">
   <Sidebar activeSection={activeSection} onSectionChange={setActiveSection} />
 </div>
 
@@ -144,17 +156,16 @@ function App() {
 {isSidebarOpen && (
   <div className="md:hidden fixed inset-0 z-40 flex">
     {/* Overlay */}
-    <div
-      className="absolute inset-0 bg-black bg-opacity-60"
-      onClick={toggleSidebar}
-    ></div>
+    <div className="absolute inset-0 bg-black bg-opacity-60" onClick={toggleSidebar}></div>
 
     {/* Sidebar Drawer */}
     <div
-      className="relative w-64 bg-gray-900 h-full z-50 p-6"
-      onClick={(e) => e.stopPropagation()}
-    >
+  className="relative w-full bg-gray-900 h-full z-50 p-4 overflow-y-auto"
+  style={{ maxWidth: 320, maxHeight: '100vh' }} // Optional: provide reasonable maxWidth
+  onClick={(e) => e.stopPropagation()}
+>
       <Sidebar
+        variant="mobile"   // <== Add this prop
         activeSection={activeSection}
         onSectionChange={(section) => {
           setActiveSection(section);
