@@ -4,9 +4,11 @@ import { Mail, Phone, MapPin, Github, Linkedin, Gitlab, Twitter } from 'lucide-r
 interface SidebarProps {
   activeSection: string;
   onSectionChange: (section: string) => void;
+  variant?: 'desktop' | 'mobile';
 }
 
-const Sidebar: React.FC<SidebarProps> = ({ activeSection, onSectionChange }) => {
+
+const Sidebar: React.FC<SidebarProps> = ({ activeSection, onSectionChange, variant = "desktop" }) => {
   const menuItems = [
     { id: 'about', label: 'About' },
     { id: 'resume', label: 'Resume' },
@@ -15,8 +17,11 @@ const Sidebar: React.FC<SidebarProps> = ({ activeSection, onSectionChange }) => 
   ];
 
   return (
-  
-    <div className="  w-72 bg-gray-900/95 backdrop-blur-sm min-h-screen p-6 fixed left-0 top-0 z-20 border-r border-gray-700/50">
+    <div className={
+      variant === "desktop"
+        ? "w-72 bg-gray-900/95 backdrop-blur-sm min-h-screen p-6 fixed left-0 top-0 z-20 border-r border-gray-700/50"
+        : "w-72 bg-gray-900/95 backdrop-blur-sm p-6"  // <== For mobile: NO fixed, NO min-h-screen
+    }>
     <div className="mb-8">
       <div className="w-30 h-30 rounded-full overflow-hidden border-4 border-orange-500 shadow-lg shadow-orange-500/30 mx-auto mb-4">
         <img
